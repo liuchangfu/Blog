@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<div class="container">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://www.itdiffer.com"><img width="100px"
+                                                                        src="{% static 'images/logo.png' %}"></a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav" role="tablist">
+                <li><a href="http://www.itdiffer.com"></a>Python</li>
+                <li><a href="http://www.itdiffer.com"></a>PHP</li>
+                <li><a href="http://www.itdiffer.com"></a>Git</li>
+                <li><a href="http://www.itdiffer.com"></a>Linux</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
+                <li><a href="{% url 'account:user_login' %}">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
