@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('myblog.urls'), name='myblog'),
     path('account/', include('account.urls'), name='account'),
+    path('pwd_reset/', include(('password_reset.urls', 'pwd_reset'), namespace='pwd_reset')),
 ]
