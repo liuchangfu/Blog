@@ -45,4 +45,6 @@ urlpatterns = [
     path('my-information/', views.myself, name='my_informaiton'),
 
     path('edit-my-information/', views.myself_edit, name='edit_my_informaiton'),
+
+    path('my-image/', views.my_image, name='my-image'),
 ]
