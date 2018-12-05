@@ -13,6 +13,7 @@ class BlogArticles(models.Model):
     class Meta:
         ordering = ('-publish',)
         verbose_name_plural = '博客文章'
+        verbose_name = '博客文章'
 
     def __str__(self):
         return self.title

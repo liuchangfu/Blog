@@ -15,6 +15,7 @@ class UserProfile(models.Model):
 
     class Meta:
         verbose_name_plural = '账户'
+        verbose_name =  '账户'
 
 
 class UserInfo(models.Model):
@@ -28,5 +29,8 @@ class UserInfo(models.Model):
 
     def __str__(self):
         return "user:{}".format(self.user.username)
+
+
     class Meta:
         verbose_name_plural = '用户信息'
+        verbose_name = '用户信息'
