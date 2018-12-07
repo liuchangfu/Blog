@@ -1,6 +1,6 @@
 # _*_ coding:utf-8 _*_
 from django import forms
-from .models import ArticleColumn, ArticelPost
+from .models import ArticleColumn, ArticlePost
 
 
 class ArticleColumnForm(forms.ModelForm):
@@ -11,5 +11,5 @@ class ArticleColumnForm(forms.ModelForm):
 
 class ArticlePostForm(forms.ModelForm):
     class Meta:
-        model = ArticelPost
+        model = ArticlePost
         fields = ('title','body')
