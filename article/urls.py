@@ -1,6 +1,6 @@
 # _*_ coding:utf-8 _*_
 from django.urls import path, re_path
-from . import views
+from . import views, list_views
 
 app_name = 'article'
 
@@ -14,4 +14,6 @@ urlpatterns = [
     # path('article-detail/<int:id>/<slug:slug>/', views.article_detail, name="article_detail"),
     path('del-article/', views.article_del, name="article_del"),
     path('redit-article/<int:article_id>/', views.redit_article, name="redit_article"),
+    path('list_article-titles/', list_views.article_titles, name='rticle_titles'),
+    path('list-article-detail/<int:id>/<slug:slug>/', list_views.artcile_detail, name="list_article_detail"),
 ]
