@@ -7,7 +7,9 @@
         </div>
         <div>
             <ul class="nav navbar-nav" role="navigation">
+                <li><a href="{% url 'home' %}">HOME</a></li>
                 <li><a href="{% url 'myblog:blog_title' %}">BLOG</a></li>
+                <li><a href="{% url 'article:rticle_titles' %}">文章</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
@@ -28,6 +30,7 @@
                 {% else %}
                     <li><a href="{% url 'account:user_login' %}">Login</a></li>
                 {% endif %}
+                    <li><a href="{% url 'account:user_register' %}">Sign up</a></li>
             </ul>
         </div>
     </div>

@@ -103,8 +103,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
+# 设置成中文
 LANGUAGE_CODE = 'zh-hans'
 
+# 设置时区
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
@@ -116,14 +118,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# 静态目录配置
 STATIC_URL = '/static/'
 
+# 静态文件的路径
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+# 登陆后跳转到首页
+LOGIN_REDIRECT_URL = '/home/'
 
-LOGIN_REDIRECT_URL = '/blog/'
-
+# 发送邮件配置
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_HOST_USER = "172667104@qq.com"
 EMAIL_HOST_PASSWORD = "mqpsevbzpvxlbige"
