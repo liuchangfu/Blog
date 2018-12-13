@@ -28,6 +28,7 @@ class ArticlePost(models.Model):
     body = models.TextField(verbose_name='正文')
     created = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
     updated = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+    users_like = models.ManyToManyField(User,related_name='article_like',blank=True,verbose_name='点赞数')
 
     class Meta:
         ordering = ('-updated',)
