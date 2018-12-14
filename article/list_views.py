@@ -8,6 +8,10 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
+import redis
+from django.conf import settings
+
+r = redis.StrictRedis(host=settings.REDIS_HOST, port=settings.REDID_PORT, db=settings.REDIS_DB)
 
 
 def article_titles(request, username=None):
@@ -21,7 +25,8 @@ def article_titles(request, username=None):
     else:
         articles_title = ArticlePost.objects.all()
 
-    paginator = Paginator(articles_title, 2)
+    # 一页显示10条记录
+    paginator = Paginator(articles_title, 10)
     page = request.GET.get('page')
     try:
         current_page = paginator.page(page)
@@ -41,7 +46,14 @@ def article_titles(request, username=None):
 
 def artcile_detail(request, id, slug):
     article = get_object_or_404(ArticlePost, id=id, slug=slug)
-    return render(request, 'article/list/article_detail.html', {'article': article})
+    total_views = r.incr('article:{}.views'.format(article.id))
+
+    article_ranking = r.zrange('article_ranking', 0, -1, desc=True)[:10]
+    article_ranking_ids = [int(id) for id in article_ranking]
+    most_viewed = list(ArticlePost.objects.filter(id__in=article_ranking_ids))
+    most_viewed.sort(key=lambda x: article_ranking_ids.index(x.id))
+    return render(request, 'article/list/article_detail.html',
+                  {'article': article, 'total_views': total_views, 'most_viewed': most_viewed})
 
 
 @csrf_exempt
@@ -53,7 +65,7 @@ def like_article(request):
     if article_id and action:
         try:
             article = ArticlePost.objects.get(id=article_id)
-            if action=='like':
+            if action == 'like':
                 article.users_like.add(request.user)
                 return HttpResponse('1')
             else:
