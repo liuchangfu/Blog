@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load article_tags %}
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
@@ -19,7 +20,7 @@
                 <link rel="stylesheet" href="{% static 'editor/css/editormd.preview.css' %}">
                 <div id="editormd-view">
         <textarea id="append-test" style="display: none;">
-            {{ article.body }}
+            {{ article.body | markdown }}
         </textarea>
                 </div>
                 <div>
@@ -75,7 +76,8 @@
             </div>
 
             <div class="col-md-3">
-                <p class="text-center"><h3>最受欢迎的文章</h3></p>
+                <p class="text-center">
+                <h3>最受欢迎的文章</h3></p>
                 <ol>
                     {% for article_rank in most_viewed %}
                         <li>
@@ -83,6 +85,21 @@
                         </li>
                     {% endfor %}
                 </ol>
+                <hr>
+                <p class="text-center">
+                <h3>最新文章</h3></p>
+                {% latest_articles 5 %}
+                <hr>
+                <p class="text-center">
+                <h3>最多评论文章</h3></p>
+                {% most_commented_articles as most_comments %}
+                <ul>
+                    {% for comment_article in most_comments %}
+                        <li>
+                            <a href="{{ comment_article.get_url_path }}">{{ comment_article.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
             {% comment %}{% endcomment %}
         </div>
