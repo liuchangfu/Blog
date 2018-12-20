@@ -20,6 +20,14 @@ class ArticleColumn(models.Model):
         verbose_name = '文章列表'
 
 
+class ArticleTag(models.Model):
+    author = models.ForeignKey(User, related_name='tag', on_delete=models.CASCADE, verbose_name='作者')
+    tag = models.CharField(max_length=500, verbose_name='标签')
+
+    def __str__(self):
+        return self.tag
+
+
 class ArticlePost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='article', verbose_name='作者')
     title = models.CharField(max_length=200, verbose_name='标题')
@@ -29,6 +37,7 @@ class ArticlePost(models.Model):
     created = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
     updated = models.DateTimeField(auto_now=True, verbose_name='更新时间')
     users_like = models.ManyToManyField(User, related_name='article_like', blank=True, verbose_name='点赞数')
+    article_tag = models.ManyToManyField(ArticleTag, related_name='article_tag', blank=True)
 
     class Meta:
         ordering = ('-updated',)
