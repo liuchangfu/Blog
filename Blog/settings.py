@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'password_reset',
     'article',
     'image',
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,7 @@ DEFAULT_FROM_EMAIL = "172667104@qq.com"
 REDIS_HOST = 'localhost'
 REDID_PORT = 6379
 REDIS_DB = 0
+
+# 图片等文件保存路径
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
