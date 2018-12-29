@@ -2,7 +2,8 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
 from django.urls import path, re_path
-from .views import AboutView, CourseListView, ManageCourseListView, CreateCourseView, DeleteCourseView
+from .views import AboutView, CourseListView, ManageCourseListView, CreateCourseView, DeleteCourseView, EditCourseView, \
+    CreateLessonView, ListLessonView, DetailLessonView, StudentListLessonView
 
 app_name = 'course'
 
@@ -13,4 +14,9 @@ urlpatterns = [
     path('manage-course/', ManageCourseListView.as_view(), name='manage_course'),
     path('create-course/', CreateCourseView.as_view(), name='create_course'),
     path('delete-course/<int:pk>/', DeleteCourseView.as_view(), name='delete_course'),
+    path('edit-course/<int:pk>/', EditCourseView.as_view(), name='edit_course'),
+    path('create-lesson/', CreateLessonView.as_view(), name='create_lesson'),
+    path('list-lesson/<int:course_id>/', ListLessonView.as_view(), name='list_lesson'),
+    path('detail-lesson/<int:lesson_id>', DetailLessonView.as_view(), name='detail_lesson'),
+    path('lessons-list/<int:course_id>/', StudentListLessonView.as_view(), name="lessons_list"),
 ]
